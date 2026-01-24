@@ -44,7 +44,7 @@ public:
     Vector(Vector&& vector){
         CAPACITY=vector.CAPACITY;
         size=vector.size;
-        data=new T[CAPACITY];
+        data=vector.data;
         
         vector.CAPACITY=0;
         vector.size=0;
@@ -70,7 +70,7 @@ public:
     
     void pushBack(const T& element){
         if(size==CAPACITY){
-            resize((CAPACITY+1)*2);
+            resize_m((CAPACITY+1)*2);
         }
         data[size++]=element;
     }
@@ -90,9 +90,28 @@ public:
         if(size>0)
             size--;
     }
+
+    void reserve(int n){
+        if(n>CAPACITY)
+        resize_m(n);
+    }
+
+    void resize(int n){
+        if(n < size){
+            for(int i=n;i<size;i++){
+                popBack();
+            }
+        }
+        else{
+            if(CAPACITY < n) resize_m(n);
+            for(int i=size;i<n; i++){
+                pushBack(T{});
+            }
+        }
+    }
     
 private:
-    void resize(int cap){
+    void resize_m(int cap){
         T* newData=new T[cap];
         for(int i=0;i<size;i++){
             newData[i]=data[i];
