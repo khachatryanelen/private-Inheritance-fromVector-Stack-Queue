@@ -27,10 +27,12 @@ int main(int argc,const char* argv[]){
     
     // std::cout << s.top() <<std::endl; 
 
-    // Vector<int> v;
-    // v.pushBack(1);
-    // v.pushBack(2);
-    // v.pushBack(3);
+    Vector<int> v;
+    v.pushBack(1);
+    v.pushBack(2);
+    v.pushBack(3);
+
+    v.at(5); //check
 
     // v.reserve(10);
     // std::cout<<"Size is: "<<v.getSize()<<std::endl;

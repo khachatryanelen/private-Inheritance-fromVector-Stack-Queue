@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <initializer_list>
+#include "myVectorException.h"
 
 template <typename T>
 class Vector{
@@ -83,6 +84,11 @@ public:
     }
 
     T& operator[](int index){
+        return data[index];
+    }
+
+    T& at(int index){
+        if(index<0 || index>=size) throw myVectorException("wrong index");
         return data[index];
     }
 
